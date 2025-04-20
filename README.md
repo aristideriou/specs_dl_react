@@ -15,8 +15,7 @@ Les directives [Content Security Policy suivantes](https://developers.google.com
 Lorsqu'une page est chargée depuis Locomotive, et que l'app React est rechargée, *uniquement lorsque l'utilisateur est connecté* : 
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'userLogin',
   'userLogin':{
     'id':'123456789', //String : ID utilisateur. 
@@ -101,8 +100,7 @@ Les interactions suivantes avec le data layer se font au sein d'une page / route
 L'ensemble des informations poussées dans le data layer provient du JSON "produit" retourné par l'ERP :
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'productRouteLoad',
   'product':{
     'name':'HA0 - Salade de crozets, panais et carottes au comté A.O.P. (Avec pain)',//String : "_source.Name" du JSON
@@ -123,8 +121,7 @@ Lors de l'ajout / retrait d'un produit au panier ou la modification d'une quanti
 Il s'agit uniquement de renseigner la quantité **ajoutée** : si un utilisateur a déjà 2 produits dans son panier, et en ajoute 4, ne renseigner que les informations sur les produits ajoutés, pas sur l'ensemble du panier.
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'cartChange',
   'cartChange':{
     'type':'Ajout',//String : "Ajout" ou "Retrait"
@@ -154,8 +151,7 @@ dataLayer.push({
 Au chargement de chaque étape du checkout et de l'affichage de la vue dédiée (Panier, Livraison et facturation, Paiement) :
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'checkoutStepLoad',
   'checkoutStepLoad':{
     'name':'Panier',//String : nom du step : "Panier", "Livraison et facturation", "Paiement"
@@ -169,8 +165,7 @@ dataLayer.push({
 Au moment où la transaction est validée, le callback de la plateforme de paiement reçu, et le message de confirmation affiché :
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'orderConfirmation',
   'orderConfirmation':{
     'id':'123456789',//String : ID de la commande
@@ -202,8 +197,7 @@ dataLayer.push({
 Lors de l'ouverture de la pop in ou du clic sur le bouton de recherche : 
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'productAddPopin',
   'productAddPopin':{
     'interaction':'Ouverture',//String : Type d'interaction : "Ouverture" ou "Recherche"
@@ -216,8 +210,7 @@ dataLayer.push({
 Lorsque la demande est validée (affichage d'une popin, route dédiée...)
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'quoteValidation',
   'quoteValidation':{
     'postCode':'75001',//String : Code postal de la ville
@@ -233,8 +226,7 @@ dataLayer.push({
 Lorsque l'utilisateur clique sur un des 3 emplacements indiquant le numéro de téléphone (ouvrant l'application téléphone ou équivalente de l'utilisateur) : 
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'phoneNumberClick',
   'phoneNumberClick':{
     'position':'Header',//String : Emplacement du bouton : "Header", "Réassurance", "Pop In"
@@ -247,8 +239,7 @@ dataLayer.push({
 Lorsque la demande est validée (affichage d'une popin, route dédiée...)
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'newsletterSubscription'
 });
 ```
@@ -258,8 +249,7 @@ dataLayer.push({
 Validation de l'un des 3 formulaires présents sur le site : Presse, Contact, Devenir Partenaire
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'formContact',
   'formContact':{
     'type':'Contact',//String : "Contact", "Presse", "Devenir Partenaire"
@@ -273,8 +263,7 @@ dataLayer.push({
 3 types d'interaction doivent être mesurées : Le clic sur la barre de recherche, l'affichage d'un résultat suite à la réponse de l'API, et le clic d'un utilisateur sur un résultat de recherche
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'searchBarInteraction',
   'searchBarInteraction':{
     'userAction':'Clic barre de recherche',//String : "Clic barre de recherche", "Affichage résultat", "Clic résultat"
@@ -286,8 +275,7 @@ dataLayer.push({
 ### Affichage d'un résultat de recherche
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'searchPageLoad',
   'searchPageLoad':{
     'nbResults':3,//Integer : nombre de résultats affichés, uniquement dans le cas de "Affichage résultat"
@@ -303,8 +291,7 @@ dataLayer.push({
 L'ensemble des informations poussées dans le data layer provient du JSON "marque" retourné par l'ERP :
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'brandPageLoad',
   'brandPageLoad':{
     'brandName':'Fauchon',//String : "_source.name" du JSON
@@ -317,8 +304,7 @@ dataLayer.push({
 ### Clic sur un filtre de la page de recherche
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'searchFilterClick',
   'searchFilterClick':{
     'name':'Sans Porc',//String : nom du filtre tel qu'il est affiché sur la page : "Sans porc", "Végétarien"... 
@@ -329,8 +315,7 @@ dataLayer.push({
 ### Chargement d'un contenu du blog
 
 ```javascript
-window.dataLayer = window.dataLayer || [];
-dataLayer.push({
+(window.dataLayer = window.dataLayer || []).push({
   'event':'contentLoad',
   'contentLoad':{
     'publicationDate':1642941251,//Integer : Timestamp UNIX en secondes de la date de publication du contenu
