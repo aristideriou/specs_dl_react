@@ -1,36 +1,12 @@
-# specs_dl_wordpress
+# Exemple specs GTM - React - Ecommerce
 
-Exemple de specs pour un site Wordpress. Si jamais vous tombez un peu par hasard sur ce repo, n'hésitez pas à lire [cet article](https://www.mightandmetrics.io/blog/ecrire_specs) qui explique le pourquoi du comment de la démarche.
+Exemple de specs GTM pour une app React / Site e-commerce. Si jamais vous tombez un peu par hasard sur ce repo, n'hésitez pas à lire [cet article](https://www.mightandmetrics.io/blog/ecrire_specs) qui explique le pourquoi du comment de la démarche.
 
-## 1 - Snippet GTM et règles CSP - Web
+## Snippet GTM et règles CSP - Web
 
-### CSP
+## Content Security Policies
 
 Les directives [Content Security Policy suivantes](https://developers.google.com/tag-manager/web/csp) doivent être mises en place afin de prermettre la bonne exécution des tags depuis GTM : 
-
-### Snippet GTM
-
-Insérer ce code aussi haut que possible dans le ```<head>``` de la page : 
-
-```javascript
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PF7MN30');</script>
-```
-
-Insérer ce code aussi haut que possible dans le ```<body>``` :
-
-```javascript
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PF7MN30"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-```
-
-Pour valider la bonne installation de GTM, suivre les étapes suivantes : 
-
-- S'assurer que l'on a bien supprimé / désactivé tout plugin qui pourrait bloquer le déclenchement de Google Tag Manager (ex : uBlock) 
-- Vérifier l'appel au fichier gtm.js dans le navigateur, répond en 200 : 
 
 ## Calcul du data layer server side / Locomotive
 
@@ -111,13 +87,18 @@ const analytics = Analytics({
 })
 ```
 
+Pour valider la bonne installation de GTM, suivre les étapes suivantes : 
+
+- S'assurer que l'on a bien supprimé / désactivé tout plugin qui pourrait bloquer le déclenchement de Google Tag Manager (ex : uBlock) 
+- Vérifier l'appel au fichier gtm.js dans le navigateur, répond en 200 : 
+
 ## Alimentations de GTM client side
 
 Les interactions suivantes avec le data layer se font au sein d'une page / route, sans rechargement, et sont donc en principe purement gérées côté JS / React.
 
 ### Chargement d'une route produit (affichage de l'encart produit sur une page de marque)
 
-L'ensemble des informations poussées dans le data layer provient du JSON "produit" retourné par l'ERP, :
+L'ensemble des informations poussées dans le data layer provient du JSON "produit" retourné par l'ERP :
 
 ```javascript
 window.dataLayer = window.dataLayer || [];
@@ -170,7 +151,7 @@ dataLayer.push({
 
 ### Chargement des routes du checkout (hors validation commande)
 
-Au chargement de chaque étape du checkout et de l'affichage de la vue dédiée : Panier, Livraison et facturation, Paiement :
+Au chargement de chaque étape du checkout et de l'affichage de la vue dédiée (Panier, Livraison et facturation, Paiement) :
 
 ```javascript
 window.dataLayer = window.dataLayer || [];
@@ -359,33 +340,33 @@ dataLayer.push({
 });
 ```
 
-## 6. Décoration d'éléments HTML
+## Décoration d'éléments HTML
 
-Certains éléments HTML de différents composants devront comporter des paramètres "data-tms-XXXX" afin que Google Tag Manager puisse capter certaines actions utilisateur liées (entrée dans le viewport, clic, focus...)
+Certains éléments HTML de différents composants devront comporter des paramètres "data-gtm-XXXX" afin que Google Tag Manager puisse capter certaines actions utilisateur liées (entrée dans le viewport, clic, focus...)
 
 ### Homepage
 
-Les section suivantes de la homepage doivent comporter une balise ```<data-tms-homepage>``` :
+Les section suivantes de la homepage doivent comporter une balise ```<data-gtm-homepage>``` :
 
-Partenaires : ```<data-tms-homepage="Partenaires">```
+Partenaires : ```<data-gtm-homepage="Partenaires">```
 
-Actus : ```<data-tms-homepage="Actus">```
+Actus : ```<data-gtm-homepage="Actus">```
 
-Footer : ```<data-tms-homepage="Footer>```
+Footer : ```<data-gtm-homepage="Footer>```
 
 ### Pages produits
 
-La section suivante des pages produit doit comporter une balise ```<data-tms-product>``` :
+La section suivante des pages produit doit comporter une balise ```<data-gtm-product>``` :
 
-Sélection produit : ```<data-tms-product="Sélection produit">```
+Sélection produit : ```<data-gtm-product="Sélection produit">```
 
 ### Contenus
 
-La section suivants des pages de contenus (blog) doit comporter une balise ```<data-tms-content>``` :
+La section suivants des pages de contenus (blog) doit comporter une balise ```<data-gtm-content>``` :
 
-Pied d'article : ```<data-tms-content="Pied d'article">```
+Pied d'article : ```<data-gtm-content="Pied d'article">```
 
-## 6. Dépendances techniques
+## Dépendances techniques
 
 Certains comportements de l'app sont utilisés pour pousser des éléments d'analytics, et doivent rester consistants dans le temps. En cas de changement, informer les contacts indiqués en début de document :
 
